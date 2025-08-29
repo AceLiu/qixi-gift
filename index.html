@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ff6b9d">
+    <title>七夕节快乐 - 送给最爱的你 🌹</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入Vue3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Vue应用容器 -->
+    <div id="app">
+        <!-- 背景星空效果 -->
+        <div class="stars-container">
+            <div v-for="star in stars" :key="star.id" 
+                 class="star" 
+                 :style="{ left: star.x + 'px', top: star.y + 'px', animationDelay: star.delay + 's' }">
+                ✨
+            </div>
+        </div>
+
+        <!-- 飘落的花瓣 -->
+        <div class="petals-container">
+            <div v-for="petal in petals" :key="petal.id" 
+                 class="petal" 
+                 :style="{ left: petal.x + 'px', animationDelay: petal.delay + 's' }">
+                🌹
+            </div>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 欢迎页面 -->
+            <section v-if="currentPage === 'welcome'" class="welcome-page">
+                <div class="welcome-content">
+                    <h1 class="title">七夕节快乐</h1>
+                    <p class="subtitle">亲爱的老婆，我爱你</p>
+                    <div class="heart-container">
+                        <div class="heart" @click="showLove">💖</div>
+                    </div>
+                    <button class="start-btn" @click="nextPage">开始我们的浪漫之旅</button>
+                </div>
+            </section>
+
+            <!-- 祝福页面 -->
+            <section v-if="currentPage === 'blessing'" class="blessing-page">
+                <div class="blessing-content">
+                    <h2 class="blessing-title">七夕节祝福</h2>
+                    <div class="blessing-text">
+                        <p>亲爱的老婆：</p>
+                        <p>在这个浪漫的七夕节，</p>
+                        <p>我想对你说：</p>
+                        <p class="highlight">你是我生命中最美的风景，</p>
+                        <p class="highlight">每一天因为有你而变得特别。</p>
+                        <p>愿我们的爱情如牛郎织女般永恒，</p>
+                        <p>愿我们的幸福如银河般璀璨。</p>
+                        <p class="signature">—— 永远爱你的老公</p>
+                    </div>
+                    <button class="nav-btn" @click="nextPage">继续</button>
+                </div>
+            </section>
+
+            <!-- 回忆页面 -->
+            <section v-if="currentPage === 'memory'" class="memory-page">
+                <div class="memory-content">
+                    <h2 class="memory-title">我们的甜蜜回忆</h2>
+                    <div class="memory-grid">
+                        <div v-for="memory in memories" :key="memory.id" 
+                             class="memory-card" 
+                             @click="showMemory(memory)">
+                            <div class="memory-icon">{{ memory.icon }}</div>
+                            <h3>{{ memory.title }}</h3>
+                            <p>{{ memory.description }}</p>
+                        </div>
+                    </div>
+                    <button class="nav-btn" @click="nextPage">继续</button>
+                </div>
+            </section>
+
+            <!-- 礼物页面 -->
+            <section v-if="currentPage === 'gift'" class="gift-page">
+                <div class="gift-content">
+                    <h2 class="gift-title">送给你的礼物</h2>
+                    <div class="gift-container">
+                        <div class="gift-box" @click="openGift">
+                            <div class="gift-icon">🎁</div>
+                            <p>点击打开礼物</p>
+                        </div>
+                        <div v-if="giftOpened" class="gift-message">
+                            <h3>我的承诺</h3>
+                            <ul>
+                                <li>💕 永远爱你，不离不弃</li>
+                                <li>🌹 每天给你一个拥抱</li>
+                                <li>⭐ 陪你走过人生的每一天</li>
+                                <li>💝 做你最好的依靠</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="nav-btn" @click="restart">重新开始</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- 音乐控制 -->
+        <div class="music-control">
+            <button @click="toggleMusic" class="music-btn">
+                <i :class="isMusicPlaying ? 'fas fa-volume-up' : 'fas fa-volume-mute'"></i>
+            </button>
+        </div>
+
+        <!-- 页面指示器 -->
+        <div class="page-indicator">
+            <div v-for="(page, index) in pages" :key="index" 
+                 class="indicator-dot" 
+                 :class="{ active: currentPageIndex === index }"
+                 @click="goToPage(index)">
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

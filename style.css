@@ -1,0 +1,903 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 根元素样式 */
+:root {
+    --primary-color: #ff6b9d; /* 浪漫的粉色 */
+    --secondary-color: #8b5cf6; /* 紫色 */
+    --accent-color: #fbbf24; /* 金色 */
+    --text-color: #ffffff; /* 白色文字 */
+    --background-color: #0f0f23; /* 深蓝色背景 */
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --shadow-color: rgba(255, 107, 157, 0.3);
+}
+
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 背景渐变效果 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+    z-index: -2;
+}
+
+/* 星空背景效果 */
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    font-size: 20px;
+    color: #ffffff;
+    animation: twinkle 3s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+/* 星星闪烁动画 */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 花瓣飘落效果 */
+.petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    font-size: 24px;
+    animation: fall 10s linear infinite;
+    opacity: 0.8;
+}
+
+/* 花瓣飘落动画 */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 主要内容区域 */
+.main-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 欢迎页面样式 */
+.welcome-page {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.welcome-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* 标题发光效果 */
+@keyframes glow {
+    from { text-shadow: 0 0 20px var(--shadow-color); }
+    to { text-shadow: 0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color); }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+/* 爱心容器 */
+.heart-container {
+    margin: 40px 0;
+}
+
+.heart {
+    font-size: 4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: heartbeat 2s infinite;
+}
+
+.heart:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 20px var(--primary-color));
+}
+
+/* 心跳动画 */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* 按钮样式 */
+.start-btn, .nav-btn {
+    background: var(--gradient-primary);
+    color: var(--text-color);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    margin-top: 20px;
+}
+
+.start-btn:hover, .nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+/* 祝福页面样式 */
+.blessing-page {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.blessing-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.blessing-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.blessing-text {
+    font-size: 1.3rem;
+    line-height: 2;
+    margin-bottom: 40px;
+}
+
+.blessing-text p {
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.signature {
+    font-style: italic;
+    color: var(--primary-color);
+    margin-top: 30px;
+}
+
+/* 回忆页面样式 */
+.memory-page {
+    animation: fadeInUp 1s ease-out;
+}
+
+.memory-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.memory-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.memory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.memory-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.memory-card h3 {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.memory-card p {
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+/* 礼物页面样式 */
+.gift-page {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+.gift-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.gift-title {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px var(--shadow-color);
+}
+
+.gift-container {
+    margin-bottom: 40px;
+}
+
+.gift-box {
+    background: var(--gradient-secondary);
+    border-radius: 20px;
+    padding: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    margin-bottom: 30px;
+}
+
+.gift-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.gift-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+}
+
+.gift-box p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.gift-message {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.gift-message h3 {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.gift-message ul {
+    list-style: none;
+    text-align: left;
+}
+
+.gift-message li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.gift-message li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+/* 音乐控制按钮 */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.music-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.music-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* 页面指示器 */
+.page-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+.indicator-dot:hover {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式设计 - 手机优化 */
+@media (max-width: 768px) {
+    /* 基础布局调整 */
+    .main-content {
+        padding: 15px;
+        min-height: 100vh;
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+    
+    /* 标题字体调整 */
+    .title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+    
+    /* 爱心大小调整 */
+    .heart {
+        font-size: 2.8rem;
+        margin: 30px 0;
+    }
+    
+    /* 祝福页面优化 */
+    .blessing-content {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .blessing-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .blessing-text {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+    
+    .blessing-text p {
+        margin-bottom: 12px;
+    }
+    
+    .highlight {
+        font-size: 1.2rem;
+    }
+    
+    /* 回忆页面优化 */
+    .memory-content {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .memory-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .memory-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .memory-card {
+        padding: 25px 20px;
+        min-height: 120px;
+    }
+    
+    .memory-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .memory-card h3 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+    
+    .memory-card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    /* 礼物页面优化 */
+    .gift-content {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .gift-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .gift-box {
+        padding: 25px 20px;
+        margin-bottom: 25px;
+    }
+    
+    .gift-icon {
+        font-size: 2.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .gift-box p {
+        font-size: 1.1rem;
+    }
+    
+    .gift-message {
+        padding: 25px 20px;
+    }
+    
+    .gift-message h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .gift-message li {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        padding: 8px;
+    }
+    
+    /* 按钮优化 */
+    .start-btn, .nav-btn {
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 25px;
+    }
+    
+    /* 音乐控制按钮优化 */
+    .music-control {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .music-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    /* 页面指示器优化 */
+    .page-indicator {
+        bottom: 15px;
+        gap: 8px;
+    }
+    
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    /* 星空和花瓣效果优化 */
+    .star {
+        font-size: 16px;
+    }
+    
+    .petal {
+        font-size: 20px;
+    }
+}
+
+/* 小屏手机优化 */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+        padding-top: 50px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    
+    .heart {
+        font-size: 2.5rem;
+        margin: 25px 0;
+    }
+    
+    .blessing-title, .memory-title, .gift-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+    
+    .blessing-text {
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+    
+    .highlight {
+        font-size: 1.1rem;
+    }
+    
+    .memory-card {
+        padding: 20px 15px;
+        min-height: 100px;
+    }
+    
+    .memory-icon {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .memory-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .memory-card p {
+        font-size: 0.9rem;
+    }
+    
+    .gift-box {
+        padding: 20px 15px;
+    }
+    
+    .gift-icon {
+        font-size: 2.5rem;
+    }
+    
+    .gift-box p {
+        font-size: 1rem;
+    }
+    
+    .gift-message {
+        padding: 20px 15px;
+    }
+    
+    .gift-message h3 {
+        font-size: 1.2rem;
+    }
+    
+    .gift-message li {
+        font-size: 0.95rem;
+        padding: 6px;
+    }
+    
+    .start-btn, .nav-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        min-height: 45px;
+    }
+    
+    .music-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .indicator-dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* 超小屏手机优化 */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 8px;
+        padding-top: 45px;
+    }
+    
+    .title {
+        font-size: 1.6rem;
+    }
+    
+    .subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .heart {
+        font-size: 2.2rem;
+    }
+    
+    .blessing-title, .memory-title, .gift-title {
+        font-size: 1.6rem;
+    }
+    
+    .blessing-text {
+        font-size: 0.9rem;
+    }
+    
+    .memory-card {
+        padding: 15px 12px;
+    }
+    
+    .memory-icon {
+        font-size: 2rem;
+    }
+    
+    .gift-box {
+        padding: 15px 12px;
+    }
+    
+    .gift-icon {
+        font-size: 2.2rem;
+    }
+    
+    .start-btn, .nav-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        min-height: 40px;
+    }
+}
+
+/* 横屏手机优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main-content {
+        padding-top: 20px;
+        min-height: 100vh;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    
+    .heart {
+        font-size: 2.2rem;
+        margin: 20px 0;
+    }
+    
+    .blessing-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .memory-card {
+        padding: 15px 12px;
+        min-height: 80px;
+    }
+    
+    .memory-icon {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+    
+    .memory-card h3 {
+        font-size: 1rem;
+    }
+    
+    .memory-card p {
+        font-size: 0.8rem;
+    }
+    
+    .gift-box {
+        padding: 20px 15px;
+    }
+    
+    .gift-icon {
+        font-size: 2.2rem;
+    }
+    
+    .start-btn, .nav-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+        min-height: 40px;
+    }
+}
+
+/* 触摸优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 增加触摸目标大小 */
+    .start-btn, .nav-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .music-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .indicator-dot {
+        min-width: 12px;
+        min-height: 12px;
+    }
+    
+    .heart {
+        min-width: 60px;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .memory-card {
+        cursor: pointer;
+    }
+    
+    .gift-box {
+        cursor: pointer;
+    }
+    
+    /* 移除hover效果，避免触摸设备上的问题 */
+    .start-btn:hover, .nav-btn:hover {
+        transform: none;
+    }
+    
+    .heart:hover {
+        transform: none;
+    }
+    
+    .memory-card:hover {
+        transform: none;
+    }
+    
+    .gift-box:hover {
+        transform: none;
+    }
+    
+    .music-btn:hover {
+        transform: none;
+    }
+    
+    .indicator-dot:hover {
+        transform: none;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
